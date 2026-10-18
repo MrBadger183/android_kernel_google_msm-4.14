@@ -428,6 +428,8 @@ int LZ4_decompress_fast(const char *source, char *dest, int originalSize)
 }
 
 #ifndef STATIC
+EXPORT_SYMBOL(LZ4_decompress_safe);
+EXPORT_SYMBOL(LZ4_decompress_fast);
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_DESCRIPTION("LZ4 decompressor");
 #endif

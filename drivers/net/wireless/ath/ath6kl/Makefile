@@ -22,6 +22,8 @@
 # Author(s): ="Atheros"
 #------------------------------------------------------------------------------
 
+subdir-ccflags-y += -Wno-error -Wno-parentheses-equality
+
 obj-$(CONFIG_ATH6KL) += ath6kl_core.o
 ath6kl_core-y += debug.o
 ath6kl_core-y += hif.o

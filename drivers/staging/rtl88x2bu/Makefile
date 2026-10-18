@@ -1,3 +1,4 @@
+ccflags-y += -Wno-unknown-warning-option
 ccflags-y += -Wno-error
 ccflags-y += $(USER_EXTRA_CFLAGS)
 ccflags-y += -O1
@@ -265,7 +266,7 @@ CONFIG_CUSTOMER_HUAWEI_GENERAL = n
 
 CONFIG_DRVEXT_MODULE = n
 
-export TopDIR ?= $(shell pwd)
+export TopDIR := $(srctree)/$(src)
 
 ########### COMMON  #################################
 ifeq ($(CONFIG_GSPI_HCI), y)

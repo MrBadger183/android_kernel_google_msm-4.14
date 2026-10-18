@@ -1,3 +1,4 @@
+EXTRA_CFLAGS += -Wno-unknown-warning-option
 EXTRA_CFLAGS += -Wno-error
 EXTRA_CFLAGS += $(USER_EXTRA_CFLAGS)
 EXTRA_CFLAGS += -O1
@@ -153,7 +154,7 @@ CONFIG_PLATFORM_RTL8197D = n
 
 CONFIG_DRVEXT_MODULE = n
 
-export TopDIR ?= $(shell pwd)
+export TopDIR := $(srctree)/$(src)
 
 ########### COMMON  #################################
 ifeq ($(CONFIG_GSPI_HCI), y)
