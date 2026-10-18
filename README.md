@@ -1,6 +1,6 @@
 # FishHunter Kali-NetHunter Kernel (Pixel 4a / sunfish)
 
-Custom NetHunter & blu_spark performance kernel for Google Pixel 4a (`sunfish`) running Android 13 (Linux 4.14).
+Custom NetHunter & performance kernel for Google Pixel 4a (`sunfish`) running Android 13 (Linux 4.14).
 
 ---
 
@@ -24,7 +24,7 @@ Custom NetHunter & blu_spark performance kernel for Google Pixel 4a (`sunfish`) 
   - USB Mass Storage with CD-ROM emulation support (DriveDroid compatible).
   - CDC-Ethernet, RNDIS, and ECM/EEM network tethering emulation.
 
-### blu_spark & Performance Enhancements
+### Performance Enhancements
 - **WireGuard:** In-tree backport of WireGuard v1.0.20220627 for high-performance encrypted tunneling.
 - **Direct High Brightness Mode (HBM):** Sysfs control for display sunlight readability mode.
 - **USB2 Fast Charge:** Force high-current charging mode on standard USB ports.
@@ -53,8 +53,16 @@ Google Clang toolchain and Android kernel build environment (AOSP `android-msm-s
 repo init -u https://android.googlesource.com/kernel/manifest -b android-msm-sunfish-4.14-android13-qpr3
 repo sync -j$(nproc)
 
+# Remove msm-google source code from the private/msm-google folder after repo sync is complete.
+cd private && rm -rf msm-google && git clone https://github.com/MrBadger183/android_kernel_google_msm-4.14
+
+# Go back to main directory
+cd ..
+
+# Once the previous steps are completed then you are ready to build.
+
 # Build sunfish kernel image and modules
-./build_sunfish.sh
+./build_sunfish.sh 
 ```
 
 Build outputs will be generated in `out/android-msm-pixel-4.14/dist/`:
@@ -68,3 +76,5 @@ Build outputs will be generated in `out/android-msm-pixel-4.14/dist/`:
 ## Flashing
 
 Package `Image.lz4-dtb`, `dtbo.img`, and module `.ko` files using [AnyKernel3](https://github.com/osm0sis/AnyKernel3) and flash via TWRP / custom recovery or Kernel Flasher.
+
+I have cherry-picked features from engstk/blu_spark for the pixel4a and cr4sh-me/android_kernel_xiaomi_surya for the poco x3 NFC to combine those features for the kali-nethunter features and performace enhancements. Credits go them for all the work they did on the stuff I cherry-picked. I hope you enjoy my work. I know the phone is older but it still works great for this purpose. Which is why I built a custom kernel for it. It if you like my work consider staring my repo. Thabnks.
